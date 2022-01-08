@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -10,25 +9,6 @@ struct Vertex
     vector<int> arc;
     Vertex():degree(0), arc({}){;};
 };
-
-
-void updateDegree(vector<vector<int> >& NumofVtxofDeg, vector<Vertex>& V, int index)
-{
-    //remove j at Num[k]
-    int k = V[index].degree;
-    for(int i = 0; i < NumofVtxofDeg[k].size(); i++)
-    {
-        if(NumofVtxofDeg[k][i] == index)
-        {
-            NumofVtxofDeg[k].erase(NumofVtxofDeg[k].begin()+i);
-            V[index].degree--;
-            NumofVtxofDeg[k-1].push_back(index);
-            return;
-        }
-
-    }
-    return ;
-}
 
 void PrintResult(int k, vector<Vertex>& v)
 {
@@ -92,7 +72,6 @@ int main(int argc, char** argv)
     ios_base::sync_with_stdio(0), cin.tie(0);
 	int A, B;
     int maxDegree = 0; // for BZ method
-    //ifstream f_in(argv[1]);
 	vector<Vertex> V{Vertex()};
 	while(cin >> A >> B)
 	{
@@ -105,6 +84,5 @@ int main(int argc, char** argv)
         maxDegree = max(V[A].degree, max(V[B].degree, maxDegree));
 	}
     NaiveMethod(V, maxDegree);
-    //f_in.close();
 	return 0;
 }

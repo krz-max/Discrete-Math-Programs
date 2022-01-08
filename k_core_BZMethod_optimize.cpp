@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
 #include <algorithm>
 using namespace std;
 
@@ -72,7 +71,6 @@ int main(int argc, char** argv)
     ios_base::sync_with_stdio(0), cin.tie(0);
 	int A, B;
     int maxDegree = 0; // for BZ method
-    //ifstream f_in(argv[1]);
 	vector<Vertex> V;
     while(cin >> A >> B)
     {
@@ -85,6 +83,5 @@ int main(int argc, char** argv)
         maxDegree = max(V[A].degree, max(V[B].degree, maxDegree));
     }
     BZ_Method(V, maxDegree);
-    //f_in.close();
 	return 0;
 }

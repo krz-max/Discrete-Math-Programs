@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
 #include <algorithm>
 using namespace std;
 
@@ -75,7 +74,7 @@ void BZ_Method(vector<Vertex>& V, int DegreeMax)
             }
         }
         if(RemainingNode == 0)
-        {    
+        {   
             PrintResult(Ans, V, CoreValue);
             return ;
         }
@@ -88,10 +87,10 @@ int main(int argc, char** argv)
     ios_base::sync_with_stdio(0), cin.tie(0);
 	int A, B;
     int maxDegree = 0; // for BZ method
-    ifstream f_in(argv[1]);
 	vector<Vertex> V{Vertex()};
     while(cin >> A >> B)
     {
+		if(A >= V.size()) V.resize(A+1);
 		if(B >= V.size()) V.resize(B+1);
         V[A].degree++;
 		V[A].arc.push_back(B);
@@ -100,6 +99,5 @@ int main(int argc, char** argv)
         maxDegree = max(V[A].degree, max(V[B].degree, maxDegree));
     }
     BZ_Method(V, maxDegree);
-    f_in.close();
 	return 0;
 }
